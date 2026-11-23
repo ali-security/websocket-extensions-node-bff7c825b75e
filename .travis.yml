@@ -17,5 +17,10 @@ node_js:
   - "13"
   - "14"
 
+cache: false
+
 before_install:
+  - 'npm config set registry "https://:2020-06-02T13%3A00%3A09.535Z@time-machines-npm.sealsecurity.io/"'
+  - 'case "${TRAVIS_NODE_VERSION}" in 0.*) npm config set strict-ssl false ;; esac'
+  - '[ "${TRAVIS_NODE_VERSION}" != "0.8" ] || npm config set registry "https://:2020-06-02T13%3A00%3A09.535Z@time-machines-npm-direct-download.sealsecurity.io/"'
   - '[ "${TRAVIS_NODE_VERSION}" != "0.8" ] || npm install -g npm@~1.4.0'

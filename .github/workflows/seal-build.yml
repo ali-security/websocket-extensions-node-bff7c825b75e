@@ -1,0 +1,21 @@
+name: seal-build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+      - name: Pack
+        run: npm pack
+      - uses: actions/upload-artifact@v4
+        with:
+          name: websocket-extensions-0.1.4
+          path: websocket-extensions-0.1.4.tgz
+          if-no-files-found: error
